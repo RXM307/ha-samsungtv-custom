@@ -14,6 +14,7 @@ import requests
 from homeassistant import util
 from homeassistant.components.media_player import (
     MediaPlayerEntity,
+    MediaPlayerEntityFeature,
     PLATFORM_SCHEMA,
     DEVICE_CLASS_TV,
 )
@@ -68,15 +69,17 @@ MIN_TIME_BETWEEN_FORCED_SCANS = timedelta(seconds=1)
 MIN_TIME_BETWEEN_SCANS = timedelta(seconds=10)
 
 SUPPORT_SAMSUNGTV = (
-    SUPPORT_PAUSE
-    | SUPPORT_VOLUME_STEP
-    | SUPPORT_VOLUME_MUTE
-    | SUPPORT_PREVIOUS_TRACK
-    | SUPPORT_SELECT_SOURCE
-    | SUPPORT_NEXT_TRACK
-    | SUPPORT_TURN_OFF
-    | SUPPORT_PLAY
-    | SUPPORT_PLAY_MEDIA
+    MediaPlayerEntityFeature.NEXT_TRACK
+    | MediaPlayerEntityFeature.PAUSE
+    | MediaPlayerEntityFeature.PLAY
+    | MediaPlayerEntityFeature.PLAY_MEDIA
+    | MediaPlayerEntityFeature.PREVIOUS_TRACK
+    | MediaPlayerEntityFeature.SELECT_SOURCE
+    | MediaPlayerEntityFeature.STOP
+    | MediaPlayerEntityFeature.TURN_OFF
+    | MediaPlayerEntityFeature.VOLUME_MUTE
+    | MediaPlayerEntityFeature.VOLUME_SET
+    | MediaPlayerEntityFeature.VOLUME_STEP
 )
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
