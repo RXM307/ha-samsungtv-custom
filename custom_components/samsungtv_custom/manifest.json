@@ -1,10 +1,13 @@
 {
   "domain": "samsungtv_custom",
   "name": "Samsungtv Custom",
+  "version":"3.0.6",
   "documentation": "https://github.com/roberodin/ha-samsungtv-custom",
   "requirements": ["wakeonlan==1.1.6"
   ],
   "dependencies": [],
-  "codeowners": ["@roberodin"],
+  "codeowners": ["@roberodin",
+                 "@RXM307"
+  ],
   "homeassistant": "0.90.0"
 }
