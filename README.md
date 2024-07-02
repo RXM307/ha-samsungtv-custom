@@ -1,4 +1,4 @@
-[![](https://img.shields.io/github/release/roberodin/ha-samsungtv-custom/all.svg?style=for-the-badge)](https://github.com/roberodin/ha-samsungtv-custom/releases)
+[![](https://img.shields.io/github/release/roberodin/ha-samsungtv-custom/all.svg?style=for-the-badge)](https://github.com/RXM307/ha-samsungtv-custom/releases)
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
 [![](https://img.shields.io/github/license/roberodin/ha-samsungtv-custom?style=for-the-badge)](LICENSE)
 [![](https://img.shields.io/badge/MAINTAINER-%40roberodin-red?style=for-the-badge)](https://github.com/roberodin)
@@ -12,6 +12,7 @@ This is a custom component to allow control of SamsungTV devices in [HomeAssista
 
 * Send keys using a native Home Assistant service
 * Customize source list at media player dropdown list
+* Forked and kept alive thanks to [@roberodin](https://github.com/roberodin/ha-samsungtv-custom)
 * Change communication protocol to cover more compatibility TV models. Thanks to:
     - WS protocol from [@xchwarze](https://github.com/xchwarze/ha-samsungtv-custom)
     - Qled protocol from [@giefca](https://github.com/giefca/ha-samsungtv-qled)
