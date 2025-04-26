@@ -16,9 +16,10 @@ from homeassistant.components.media_player import (
     MediaPlayerEntity,
     MediaPlayerEntityFeature,
     PLATFORM_SCHEMA,
-    DEVICE_CLASS_TV,
+    MediaPlayerDeviceClass,
+    MediaType
 )
-from homeassistant.components.media_player.const import (
+"""from homeassistant.components.media_player.const import (
     MEDIA_TYPE_CHANNEL,
     SUPPORT_NEXT_TRACK,
     SUPPORT_PAUSE,
@@ -36,7 +37,7 @@ from homeassistant.components.media_player.const import (
     MEDIA_TYPE_PLAYLIST,
     MEDIA_TYPE_MUSIC,
     MEDIA_TYPE_APP
-)
+)"""
 from homeassistant.const import (
     CONF_HOST,
     CONF_MAC,
@@ -309,13 +310,13 @@ class SamsungTVDevice(MediaPlayerEntity):
     def supported_features(self):
         """Flag media player features that are supported."""
         if self._mac:
-            return SUPPORT_SAMSUNGTV | SUPPORT_TURN_ON
+            return SUPPORT_SAMSUNGTV | MediaPlayerEntityFeature.TURN_ON
         return SUPPORT_SAMSUNGTV
 
     @property
     def device_class(self):
         """Set the device class to TV."""
-        return DEVICE_CLASS_TV
+        return MediaPlayerDeviceClass.TV
 
     def turn_off(self):
         """Turn off media player."""
@@ -371,7 +372,7 @@ class SamsungTVDevice(MediaPlayerEntity):
     async def async_play_media(self, media_type, media_id, **kwargs):
         """Support changing a channel."""
 
-        if media_type == MEDIA_TYPE_CHANNEL:
+        if media_type == MediaType.CHANNEL:
         # media_id should only be a channel number
             try:
                 cv.positive_int(media_id)
@@ -589,13 +590,13 @@ class SamsungTVDeviceQLED(MediaPlayerEntity):
     def supported_features(self):
         """Flag media player features that are supported."""
         if self._mac:
-            return SUPPORT_SAMSUNGTV | SUPPORT_TURN_ON
+            return SUPPORT_SAMSUNGTV | MediaPlayerEntityFeature.TURN_ON
         return SUPPORT_SAMSUNGTV
     
     @property
     def device_class(self):
         """Set the device class to TV."""
-        return DEVICE_CLASS_TV
+        return MediaPlayerDeviceClass.TV
 
     def turn_off(self):
         """Turn off media player."""
@@ -657,7 +658,7 @@ class SamsungTVDeviceQLED(MediaPlayerEntity):
 
     async def async_play_media(self, media_type, media_id, **kwargs):
         # Type channel
-        if media_type == MEDIA_TYPE_CHANNEL:
+        if media_type == MediaType.CHANNEL:
             # media_id should only be a channel number
             try:
                 cv.positive_int(media_id)
@@ -670,7 +671,7 @@ class SamsungTVDeviceQLED(MediaPlayerEntity):
                 await asyncio.sleep(KEY_PRESS_TIMEOUT, self.hass.loop)
 
         # Launch an app
-        elif media_type == MEDIA_TYPE_APP:
+        elif media_type == MediaType.APP:
             try:
                 cv.string(media_id)
             except vol.Invalid:
@@ -690,7 +691,7 @@ class SamsungTVDeviceQLED(MediaPlayerEntity):
             await self.hass.async_add_job(self.send_key, media_id)
 
         # Launch stream
-        elif (media_type == MEDIA_TYPE_URL or media_type == MEDIA_TYPE_MUSIC):
+        elif (media_type == MediaType.URL or media_type == MediaType.MUSIC):
             _LOGGER.error("Playing on TV " + str(media_id))
             self._upnp = self.get_upnp()
             self._upnp.set_current_media(media_id)
@@ -845,14 +846,14 @@ class SamsungTVDeviceWS(MediaPlayerEntity):
     def supported_features(self):
         """Flag media player features that are supported."""
         if self._mac:
-            return SUPPORT_SAMSUNGTV | SUPPORT_TURN_ON
+            return SUPPORT_SAMSUNGTV | MediaPlayerEntityFeature.TURN_ON
 
         return SUPPORT_SAMSUNGTV
 
     @property
     def device_class(self):
         """Set the device class to TV."""
-        return DEVICE_CLASS_TV
+        return MediaPlayerDeviceClass.TV
 
     def turn_off(self):
         """Turn off media player."""
@@ -905,7 +906,7 @@ class SamsungTVDeviceWS(MediaPlayerEntity):
     async def async_play_media(self, media_type, media_id, **kwargs):
         """Support changing a channel."""
 
-        if media_type == MEDIA_TYPE_CHANNEL:
+        if media_type == MediaType.CHANNEL:
         # media_id should only be a channel number
             try:
                 cv.positive_int(media_id)
